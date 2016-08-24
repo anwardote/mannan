@@ -1,0 +1,13 @@
+.btn-danger a {color:white; text-decoration:none}
+.btn-primary a {color:white; text-decoration:none}
+#add_st_myform {
+	background-color:#CFC;
+	padding:20px;
+	width:700px;
+	margin: 0 auto;
+
+		}
+.detailtitle {display:inline-block; width:80px; font-weight:700; font-size:16px}		
+.detailinfo {font-style:italic; font-size:14px; font-weight:400}
+
+.btn { border-radius:5px}

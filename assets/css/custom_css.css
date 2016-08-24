@@ -1,0 +1,3 @@
+.btn {border-radius:3px; width:50px}
+#menu li ul li:hover {background-color:#DAA520; color:white}
+#menu li ul li a:hover {color:white; font-size:0.8em; font-weight:700}
