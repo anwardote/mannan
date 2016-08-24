@@ -47,6 +47,7 @@ class Bank_capital_model extends CI_Model {
 
     function delete_bank_capital($id) {
         $this->db->delete('bank_capital', array('id' => $id));
+        return TRUE;
     }
 
 }

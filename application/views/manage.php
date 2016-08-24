@@ -19,8 +19,8 @@ require_once 'footsrc.php';
 
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
-                            <i class="icon-tasks icon-large"></i> Bank Capital <span class="label label-inverse pull-right">4</span>
-                        </a>
+                            <h5 style="font-size: 18px; color:gray; margin: 0"> <i class="icon-tasks icon-large"></i> Bank Capital</h5>
+                             </a>
 
                         <ul class="collapse list-group" id="component-nav">
 

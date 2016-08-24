@@ -47,7 +47,7 @@ class User extends CI_Controller {
                 $detail['users'][] = $data;
             }
         }
-        $this->load->view('manage/index', $detail);
+        $this->load->view('user_view/index', $detail);
     }
 
     function add() {

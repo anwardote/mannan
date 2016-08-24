@@ -44,6 +44,12 @@
                 overflow-y: auto;
             }
 
+            body{
+                background:#FDF4E8;
+                background-image: url(<?php echo site_url('assets/uploads/icons/bg.png');?>);
+                background-position: top center;
+            }
+
         </style>
 
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
@@ -53,7 +59,7 @@
     </head>
     <body>
         <!-- BEGIN WRAP -->
-        <div id="wrap">
+        <div id="wrap" class="container">
 
 
             <!-- BEGIN TOP BAR -->

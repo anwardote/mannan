@@ -110,7 +110,7 @@ class Bank_capital extends CI_Controller {
         $owner = $this->User_model->get_user($capital['approved_by_manager']);
         $data['approved_by_manager'] = $owner['name'];
         $data['hidden'] = $capital['hidden'];
-        
+
 
 
         $data['comments'] = $capital['comments'];
@@ -185,14 +185,14 @@ class Bank_capital extends CI_Controller {
         }
     }
 
-     public function update() {
+    public function update() {
         if ($this->session->userdata('login') == 'logIn') {
             if (!($this->session->userdata('rank_id') == 1 || $this->session->userdata('rank_id') == 2 || $this->session->userdata('rank_id') == 3)) {
                 redirect('dashboard/error/index');
             }
 
             $this->_validate();
-            $id=$this->input->post('edit-id');
+            $id = $this->input->post('edit-id');
             $params = array(
                 'description' => $this->input->post('description'),
                 't_type' => $this->input->post('t_type'),
@@ -204,9 +204,8 @@ class Bank_capital extends CI_Controller {
             $bank_capital_id = $this->Bank_capital_model->update_bank_capital($id, $params);
             echo json_encode(array("status" => $bank_capital_id));
         }
-    }   
-    
-    
+    }
+
     private function _validate() {
         $data = array();
         $data['error_string'] = array();
@@ -298,15 +297,9 @@ class Bank_capital extends CI_Controller {
      * Deleting bank_capital
      */
 
-    function remove($id) {
-        $bank_capital = $this->Bank_capital_model->get_bank_capital($id);
-
-        // check if the bank_capital exists before trying to delete it
-        if (isset($bank_capital['id'])) {
-            $this->Bank_capital_model->delete_bank_capital($id);
-            redirect('bank_capital/index');
-        } else
-            show_error('The bank_capital you are trying to delete does not exist.');
+    function remove() {
+        $this->Bank_capital_model->delete_bank_capital($this->input->post('id'));
+        echo json_encode(array("status" => $this->input->post('id')));
     }
 
 }
