@@ -18,11 +18,11 @@ require_once 'footsrc.php';
                 <ul id="menu" class="unstyled accordion collapse in">
 
                     <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
-                            <h5 style="font-size: 18px; color:gray; margin: 0"> <i class="icon-tasks icon-large"></i> Bank Capital</h5>
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#capital-nav-tab">
+                            <h5 style="font-size: 18px; color:white; margin: 0"> <i class="icon-tasks icon-large"></i> Bank Capital</h5>
                              </a>
 
-                        <ul class="collapse list-group" id="component-nav">
+                        <ul class="collapse list-group" id="capital-nav-tab">
 
                             <?php require_once 'bank_capital/index.php'; ?>
 

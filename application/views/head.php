@@ -31,11 +31,11 @@
         <script src="<?php echo site_url() ?>assets/plugins/tinymce/tinymce.init.js" type="text/javascript"></script>
         <style>
             tr .btn {
-                width:20px;
-                margin:5px;
+                width:15px;
+                margin:1px;
             }
             tr .btn img {
-                margin: auto;              
+                margin: 0;              
             } 
 
 
@@ -46,8 +46,14 @@
 
             body{
                 background:#FDF4E8;
-                background-image: url(<?php echo site_url('assets/uploads/icons/bg.png');?>);
+                background-image: url(<?php echo site_url('assets/uploads/icons/bg.png'); ?>);
                 background-position: top center;
+            }
+
+            .disabled {
+                pointer-events: none;
+                cursor: default;
+                opacity: 0.6;
             }
 
         </style>

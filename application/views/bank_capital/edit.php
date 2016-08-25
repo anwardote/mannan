@@ -1,14 +1,11 @@
-<div class="modal fade" id="myModal_edit" role="dialog">
+<div class="modal fade" id="myModal_capital_edit" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Capital Addition/Deduction Edit Form</h4>
+                <h4 class="modal-title">Capital Update Form</h4>
             </div>
             <div class="modal-body">
-
-
-
 
                 <form class="form-horizontal" id="bank_capital_form_edit" style="margin:12px; display: none" >
                     <input type="hidden" name="edit-id" value="" />
@@ -96,18 +93,11 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-8 controls with-tooltip">
-                            <a href="#" class="btn btn-default btn-submit" id="SubmitUpdateBtn" title="Submit Form"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/update.png"></a>
-                            <a href="#" class="btn btn-info btn-submit" title="Clear Form" id="ClearEditBtn"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/clear.png"></a>
-
-
+                            <a href="javascript:void(0)" class="btn btn-default btn-submit" id="SubmitUpdateBtn" title="Submit Form"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/update.png"></a>
+                            <a href="javascript:void(0)" class="btn btn-info btn-submit" title="Clear Form" id="ClearEditBtn"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/clear.png"></a>
                         </div>
                     </div>
-
                 </form>
-
-
-
-
             </div>
             <div class="modal-footer">
 
@@ -116,44 +106,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function (e) {
-        $("#ClearEditBtn").click(function (e) {
-            e.preventDefault();
-            $("#bank_capital_form_edit").trigger('reset');
-        })
-
-    })
-
-
-
-    function edit_capital(id) {
-        $("#bank_capital_form_edit").show('100');
-        $.ajax({
-            url: "<?php echo site_url('dashboard/bank_capital/edit') ?>/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function (data) {
-                if (data != "") {
-                    data.forEach(function (value, index) {
-                        $('[name="t_type"]').val(value.t_type);
-                        $('[name="amount"]').val(value.amount);
-                        $('[name="entry_date"]').val(value.entry_date);
-                        $('[name="description"]').val(value.description);
-                        $('[name="hidden"]').val(value.hidden);
-                        $('[name="comments"]').val(value.comments);
-                        $('[name="edit-id"]').val(value.id);
-                    })
-                } // If Condtion END
-
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error get data from ajax');
-            }
-        });
-    }
-
-
-</script>

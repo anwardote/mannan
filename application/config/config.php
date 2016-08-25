@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://bank.mse24.com/';
+$config['base_url'] = 'http://bankz.mse24.com/';
 
 /*
 |--------------------------------------------------------------------------

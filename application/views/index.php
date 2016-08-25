@@ -1,6 +1,6 @@
 <?php
 $this->load->view('head');
-$this->load->view('left');
+//$this->load->view('left');
 ?>
 <style>
     .indexbody { padding: 10px}

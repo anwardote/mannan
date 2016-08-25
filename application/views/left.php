@@ -3,11 +3,11 @@
     <!-- .user-media -->
     <div class="media user-media hidden-phone">
         <a href="" style='width:60px' class="user-link">
-            
+
             <?php
-                     $thumb = explode(".", $this->session->userdata('thumbnil'));
-                    $thumbnil_thumb = $thumb['0'] . "_thumb." . $thumb['1'];
-            $userimage = site_url() . "assets/uploads/users/" .$thumbnil_thumb;
+            $thumb = explode(".", $this->session->userdata('thumbnil'));
+            $thumbnil_thumb = $thumb['0'] . "_thumb." . $thumb['1'];
+            $userimage = site_url() . "assets/uploads/users/" . $thumbnil_thumb;
 
 
             if (@getimagesize($userimage)) {
@@ -36,6 +36,22 @@
 
     <!-- BEGIN MAIN NAVIGATION -->
     <ul id="menu" class="unstyled accordion collapse in">
+
+        <li class="accordion-group ">
+            <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#capital-nav">
+                <i class="icon-tasks icon-large"></i> Bank Capital <span class="label label-inverse pull-right">4</span>
+            </a>
+            <ul class="collapse list-group" id="capital-nav">
+
+                <li>
+                    <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#capital-nav-tab">Bank Capital</a>
+                    
+                </li>
+            </ul>
+        </li>
+
+
+
         <li class="accordion-group ">
             <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
                 <i class="icon-tasks icon-large"></i> Categories Setup <span class="label label-inverse pull-right">4</span>
@@ -117,7 +133,8 @@
                 <li><?php echo anchor('dashboard/rank/add', '<i class="icon-angle-right"></i> Add Rank') ?></li>
             </ul>
         </li> 
-        <!-- END MAIN NAVIGATION -->
+    </ul>
+    <!-- END MAIN NAVIGATION -->
 
 </div>
 <!-- END LEFT -->

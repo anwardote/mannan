@@ -70,6 +70,9 @@
         $(this).parent().parent().removeClass('has-error');
         $(this).next().empty();
     });
+    $(function () {
+        $('.datepicker').datepicker();
+    })
 </script>
 
 
@@ -108,8 +111,8 @@
                     <label for="comments" class="col-md-4 control-label">Short Description</label>
                     <textarea name="comments" id="DeletemodalComments" class="form-control" style="width:95%" placeholder="Please write reason" ></textarea>
 
-                    <a href="javascript:void()" class="btn btn-info btn-submit cleardeleteform"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/clear.png"></a>
-                    <a href="javascript:void()" onsubmit="return checkform()" class="btn btn-danger btn-submit submitdeleteModalbtn"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/Trash.png"></a>
+                    <a href="javascript:void(0)" class="btn btn-info btn-submit cleardeleteform"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/clear.png"></a>
+                    <a href="javascript:void(0)" class="btn btn-danger btn-submit submitdeleteModalbtn"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/Trash.png"></a>
 
                 </form>
             </div>
@@ -121,45 +124,3 @@
     </div>
 </div>
 
-<script>
-    $(".cleardeleteform").click(function (e) {
-        $("#deleteModalForm").trigger('reset');
-
-    })
-
-
-    $(".submitdeleteModalbtn").click(function (e) {
-        var RouteSource = $("#deleteModalSource").val();
-
-        if ($.trim($("#DeletemodalComments").val()) == "") {
-            alert("Reason Field is required.");
-            return false;
-        }
-        url = "<?php echo site_url() ?>" + RouteSource;
-        alert(url);
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: $("#deleteModalForm").serialize(),
-            dataType: "JSON",
-            success: function (data)
-            {
-                if (data.status) {
-                    $('#myModal_delete').modal('hide');
-                    $("#deleteModalForm").trigger('reset');
-
-                    loadTableData();
-                    alert('The Entry is deleted successfully');
-
-
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                loadTableData();
-                alert('Fail to delete the entry.')
-            }
-        });
-    })
-
-</script>

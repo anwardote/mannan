@@ -1,5 +1,14 @@
-<script>
-    function detail_capital(id) {
+$(document).ready(function () {
+    
+    $(document).on('click', '.ViewCapitalbtns', function () {
+        var id = $(this).attr("data-id");
+
+        $('#myModal_view').modal({
+            backdrop: 'static',
+            keyboard: true,
+            show: true
+        });
+
         $.ajax({
             url: "<?php echo site_url('dashboard/bank_capital/viewdetail') ?>/" + id,
             type: "GET",
@@ -61,7 +70,7 @@
                     });
                     html += '</tbody></table>';
                     $("#myModal_view .modal-body").html(html);
-                    $("#myModal_view .modal-title").html("Capital Details Information");
+                    $("#myModal_view .modal-title").html("Details Information");
                 } // If Condtion END
 
             },
@@ -70,6 +79,7 @@
                 alert('Error get data from ajax');
             }
         });
-    }
 
-</script>
+    }); // Delete Modal Show END
+
+})

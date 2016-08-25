@@ -1,9 +1,9 @@
-<div class="modal fade" id="myModal_add" role="dialog">
+<div class="modal fade" id="myModal_capital_add" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Capital Addition/Deduction Form</h4>
+                <h4 class="modal-title">Capital Form</h4>
             </div>
             <div class="modal-body">
 
@@ -92,10 +92,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-8 controls with-tooltip">
-                            <a href="#" class="btn btn-success btn-submit" id="SubmitBtn" title="Submit Form"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/plus.png"></a>
-                            <a href="#" class="btn btn-info btn-submit" title="Clear Form" id="ClearBtn"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/clear.png"></a>
-
-
+                            <a href="javascript:void(0)" class="btn btn-success btn-submit" id="Capital_add_submit_Btn" title="Submit Form"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/plus.png"></a>
+                            <a href="javascript:void(0)" class="btn btn-info btn-submit" title="Clear Form" id="ClearBtn"><img style="width: 25px" height="25px" src="<?php echo site_url(); ?>assets/uploads/icons/clear.png"></a>
                         </div>
                     </div>
 
@@ -108,14 +106,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function (e) {
-        $("#NewEntryBtn").click(function (e) {
-            e.preventDefault();
-            $("#bank_capital_form").trigger('reset');
-            $("#bank_capital_form").show('100');
-        })
-
-    })
-</script>
