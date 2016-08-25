@@ -35,18 +35,18 @@ require_once 'footsrc.php';
                         </a>
                         <ul class="collapse " id="student-nav">
 
-<?php
-            require_once 'user_view/index.php';
-?>
+                            <?php
+                            require_once 'user_view/index.php';
+                            ?>
                         </ul>
                     </li>
                 </ul>
             </div>
 
 
-<?php
-$this->load->view('foot');
-?>
+            <?php
+            $this->load->view('foot');
+            ?>
 
 
 

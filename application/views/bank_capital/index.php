@@ -93,11 +93,11 @@
 
                 </div>
 
-            </div>
-
-
-
-
+                </div>
+                
+            
+            
+            
             <div id="capital_all_record_tab" class="tab-pane fade">
 
                 <div class="accordion-body collapse in body">	
@@ -105,27 +105,27 @@
 
                     <table class="table table-bordered table-condensed table-hover table-responsive">
                         <thead>
-
-                        <th style="width: 40px">ID</th>
+                                                           
+                                <th style="width: 40px">ID</th>
                         <th style='text-align: center'>Date</th>
-                        <th style="text-align: right">Amount</th>
-                        <th style="text-align: right">Total</th>
+                                <th style="text-align: right">Amount</th>
+                                <th style="text-align: right">Total</th>
                         <th style="text-align: center">Status</th>
-                        <!--th>Date</th-->
+                                <!--th>Date</th-->
                         <th style="width:90px; text-align: center">Actions</th>
-
+                 
                         </thead>
                         <tbody class="bank_capital_table_data_all">
                         </tbody>
                     </table>
 
                 </div>
-
+                
             </div>
-
-
+            
+            
             <div id="capital_my_record_tab" class="tab-pane fade">
-
+            
                 <div class="accordion-body collapse in body">	
                     <div class="pull-right"><a class="btn btn-success" id="modal-capital-add" href="javascript:void()"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/plus.png"></a></div>
 
@@ -453,7 +453,7 @@
 
 <?php require_once 'assets/bank_js/delete_modal.js'; ?>
 
-
+    
 </script>
 
 
