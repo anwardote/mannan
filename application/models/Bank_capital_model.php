@@ -18,9 +18,48 @@ class Bank_capital_model extends CI_Model {
      * Get all bank_capital
      */
 
-    function get_all_bank_capital() {
-        return $this->db->get('bank_capital')->result_array();
+    function get_all_bank_capital($status) {
+        if ($status == "approved") {
+            $stauts = '!=';
+        } else {
+            $stauts = '';
+        }
+        $this->db->select("*");
+        $this->db->from("bank_capital");
+        $this->db->order_by("id", "asc");
+        $this->db->where("approved_by_manager $stauts", NULL);
+        $query = $this->db->get();
+        return $query->result_array();
+        // return $this->db->get('bank_capital')->result_array();
+        // $this->db->order_by("id", "desc");
     }
+
+    function get_all_bank_capital_approved() {
+        $this->db->select("*");
+        $this->db->from("bank_capital");
+        $this->db->order_by("id", "asc");
+        $this->db->where("approved_by_manager !=", NULL);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    function get_all_bank_capital_notapproved() {
+        $this->db->select("*");
+        $this->db->from("bank_capital");
+        $this->db->order_by("id", "asc");
+        $this->db->where("approved_by_manager", NULL);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+      function get_all_bank_capital_all() {
+        $this->db->select("*");
+        $this->db->from("bank_capital");
+        $this->db->order_by("id", "asc");
+       // $this->db->where("approved_by_manager !=", NULL);
+        $query = $this->db->get();
+        return $query->result_array();
+    }  
 
     /*
      * function to add new bank_capital

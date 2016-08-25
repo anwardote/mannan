@@ -26,8 +26,9 @@ class Bank_capital extends CI_Controller {
         $this->load->view('bank_capital/index');
     }
 
-    function table() {
-        $bank_capital = $this->Bank_capital_model->get_all_bank_capital();
+    function table($status) {
+        $bank_capital = $this->Bank_capital_model->get_all_bank_capital($status);
+        $total=0;
         if (isset($bank_capital)) {
             foreach ($bank_capital as $capital) {
                 $data['id'] = $capital['id'];
@@ -37,7 +38,9 @@ class Bank_capital extends CI_Controller {
                 } else {
                     $data['t_type'] = "Deduction";
                 }
-                $data['amount'] = $capital['amount'];
+                $data['amount'] = number_format($capital['amount'], 2, '.', ',');
+                $total=$total+$capital['amount'];
+                $data['total']= number_format($total, 2, '.', ',');                
                 $owner = $this->User_model->get_user($capital['approved_by_owner']);
                 $data['approved_by_owner'] = $owner['name'];
                 $owner = $this->User_model->get_user($capital['approved_by_manager']);
@@ -65,6 +68,145 @@ class Bank_capital extends CI_Controller {
         echo json_encode($data['bank_capital']);
     }
 
+    
+    function approvedtable() {
+        $bank_capital = $this->Bank_capital_model->get_all_bank_capital_approved();
+        $total=0;
+        if (isset($bank_capital)) {
+            foreach ($bank_capital as $capital) {
+                $data['id'] = $capital['id'];
+                $data['description'] = $capital['description'];
+                if ($capital['t_type'] == 1) {
+                    $data['t_type'] = "Addition";
+                } else {
+                    $data['t_type'] = "Deduction";
+                }
+                $data['amount'] = number_format($capital['amount'], 2, '.', ',');
+                $total=$total+$capital['amount'];
+                $data['total']= number_format($total, 2, '.', ',');                
+                $owner = $this->User_model->get_user($capital['approved_by_owner']);
+                $data['approved_by_owner'] = $owner['name'];
+                $owner = $this->User_model->get_user($capital['approved_by_manager']);
+                $data['approved_by_manager'] = $owner['name'];
+                if ($capital['hidden'] == 1) {
+                    $data['hidden'] = "Yes";
+                } else {
+                    $data['hidden'] = "No";
+                }
+
+                $data['comments'] = $capital['comments'];
+
+                $owner = $this->User_model->get_user($capital['created_by']);
+                $data['created_by'] = $owner['name'];
+                $data['entry_date'] = Date("jS F Y", $capital['entry_date']);
+                $data['created_at'] = Date("jS F Y", $capital['created_at']);
+
+                $udate = new DateTime($capital['updated_at']);
+                $data['updated_at'] = $udate->format('jS F Y (T)');
+                $data['bank_capital'][] = $data;
+            }
+        }
+
+
+        echo json_encode($data['bank_capital']);
+    }
+    
+    
+    function notapprovedtable() {
+        $bank_capital = $this->Bank_capital_model->get_all_bank_capital_notapproved();
+        $total=0;
+        if (isset($bank_capital)) {
+            foreach ($bank_capital as $capital) {
+                $data['id'] = $capital['id'];
+                $data['description'] = $capital['description'];
+                if ($capital['t_type'] == 1) {
+                    $data['t_type'] = "Addition";
+                } else {
+                    $data['t_type'] = "Deduction";
+                }
+                $data['amount'] = number_format($capital['amount'], 2, '.', ',');
+                $total=$total+$capital['amount'];
+                $data['total']= number_format($total, 2, '.', ',');                
+                $owner = $this->User_model->get_user($capital['approved_by_owner']);
+                $data['approved_by_owner'] = $owner['name'];
+                $owner = $this->User_model->get_user($capital['approved_by_manager']);
+                $data['approved_by_manager'] = $owner['name'];
+                if ($capital['hidden'] == 1) {
+                    $data['hidden'] = "Yes";
+                } else {
+                    $data['hidden'] = "No";
+                }
+
+                $data['comments'] = $capital['comments'];
+
+                $owner = $this->User_model->get_user($capital['created_by']);
+                $data['created_by'] = $owner['name'];
+                $data['entry_date'] = Date("jS F Y", $capital['entry_date']);
+                $data['created_at'] = Date("jS F Y", $capital['created_at']);
+
+                $udate = new DateTime($capital['updated_at']);
+                $data['updated_at'] = $udate->format('jS F Y (T)');
+                $data['bank_capital'][] = $data;
+            }
+        }
+
+
+        echo json_encode($data['bank_capital']);
+    }
+    
+    
+    
+    
+    
+    function tabledataall() {
+        $bank_capital = $this->Bank_capital_model->get_all_bank_capital_all();
+        $total=0;
+        if (isset($bank_capital)) {
+            foreach ($bank_capital as $capital) {
+                $data['id'] = $capital['id'];
+                $data['description'] = $capital['description'];
+                if ($capital['t_type'] == 1) {
+                    $data['t_type'] = "Addition";
+                } else {
+                    $data['t_type'] = "Deduction";
+                }
+                $data['amount'] = number_format($capital['amount'], 2, '.', ',');
+                $total=$total+$capital['amount'];
+                $data['total']= number_format($total, 2, '.', ',');                
+                $owner = $this->User_model->get_user($capital['approved_by_owner']);
+                $data['approved_by_owner'] = $owner['name'];
+                $owner = $this->User_model->get_user($capital['approved_by_manager']);
+                $data['approved_by_manager'] = $owner['name'];
+                if ($capital['hidden'] == 1) {
+                    $data['hidden'] = "Yes";
+                } else {
+                    $data['hidden'] = "No";
+                }
+
+                $data['comments'] = $capital['comments'];
+
+                $owner = $this->User_model->get_user($capital['created_by']);
+                $data['created_by'] = $owner['name'];
+                $data['entry_date'] = Date("jS F Y", $capital['entry_date']);
+                $data['created_at'] = Date("jS F Y", $capital['created_at']);
+
+                $udate = new DateTime($capital['updated_at']);
+                $data['updated_at'] = $udate->format('jS F Y (T)');
+                $data['bank_capital'][] = $data;
+            }
+        }
+
+
+        echo json_encode($data['bank_capital']);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     function viewdetail($id) {
         $capital = $this->Bank_capital_model->get_bank_capital($id);
         $data['id'] = $capital['id'];

@@ -18,13 +18,10 @@
         <!-- START TAB Display Name -->                  
 
         <ul class="nav nav-tabs text-bold text-capitalize hover bg-info" style="font-size: 16px">
-            <li class="active"><a data-toggle="tab" href="#capital_approved_tab">Approved</a></li>
-            <li><a data-toggle="tab" href="#capital_not_approved_tab">Non-Approved</a></li>
-            <li><a data-toggle="tab" href="#capital_all_record_tab">All Record</a></li>
-            <li><a data-toggle="tab" href="#capital_my_record_tab">My Capital</a></li>
-            <li><a data-toggle="tab" href="#emp_education">Education</a></li>
-            <li><a data-toggle="tab" href="#emp_leave_status_pvt">Leave</a></li>
-            <li><a data-toggle="tab" href="#emp_attachment_nav">Attachment</a></li>
+            <li class="active"><a data-toggle="tab" id="capital_approved_tab_nav" href="#capital_approved_tab">Approved</a></li>
+            <li><a data-toggle="tab" id="capital_not_approved_tab_nav" href="#capital_not_approved_tab">Non-Approved</a></li>
+            <li><a data-toggle="tab" id="capital_all_record_tab_nav" href="#capital_all_record_tab">All Record</a></li>
+            <li><a data-toggle="tab" id="capital_my_record_tab_nav" href="#capital_my_record_tab">My Capital</a></li>
         </ul>
         <!-- END TAB Display Name --> 
 
@@ -59,25 +56,25 @@
             <div id="capital_approved_tab" class="tab-pane fade in active">
 
 
-                <div id="div-1" class="accordion-body collapse in body">	
+                
+                <div class="accordion-body collapse in body">	
                     <div class="pull-right"><a class="btn btn-success" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_add" id="NewEntryBtn" href="javascript:void()"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/plus.png"></a></div>
                     <?php
-                    include 'add.php';
+                    include_once  'add.php';
                     include_once 'edit.php';
                     ?>
-                    <table id="dataTable" class="table table-bordered table-condensed table-hover table-responsive">
+                    <table class="table table-bordered table-condensed table-hover table-responsive">
                         <thead>
-                            <tr>                                   
+                                                           
                                 <th style="width: 40px">ID</th>
                                 <th>Type</th>
-                                <th>Amount</th>                            
-                                <th>Date</th>
-                                <th style="width:180px; text-align: center">Actions</th>
-                            </tr>                                    
-
-                            </tr>
+                                <th style="text-align: right">Amount</th>
+                                <th style="text-align: right">Total</th>
+                                <!--th>Date</th-->
+                                <th style="width:130px; text-align: center">Actions</th>
+                 
                         </thead>
-                        <tbody id="bank_capital_table">
+                        <tbody class="bank_capital_approved_table">
                         </tbody>
                     </table>
 
@@ -85,20 +82,69 @@
 
 
 
-
-
-
-
-
-
-
-
-
             </div>
+            <div id="capital_not_approved_tab" class="tab-pane fade">
 
-            <div id="emp_addresss" class="tab-pane fade">
+                <div class="accordion-body collapse in body">	
+                    <div class="pull-right"><a class="btn btn-success" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_add" id="NewEntryBtn" href="javascript:void()"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/plus.png"></a></div>
+                    <?php
+                    include_once  'add.php';
+                    include_once 'edit.php';
+                    ?>
+                    <table class="table table-bordered table-condensed table-hover table-responsive">
+                        <thead>
+                                                           
+                                <th style="width: 40px">ID</th>
+                                <th>Type</th>
+                                <th style="text-align: right">Amount</th>
+                                <th style="text-align: right">Total</th>
+                                <!--th>Date</th-->
+                                <th style="width:130px; text-align: center">Actions</th>
+                 
+                        </thead>
+                        <tbody class="bank_capital_notapproved_table">
+                        </tbody>
+                    </table>
 
-            </div>			
+                </div>
+                
+            </div>
+            
+            
+            
+            <div id="capital_all_record_tab" class="tab-pane fade">
+
+                <div class="accordion-body collapse in body">	
+                    <div class="pull-right"><a class="btn btn-success" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_add" id="NewEntryBtn" href="javascript:void()"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/plus.png"></a></div>
+                    <?php
+                    include_once  'add.php';
+                    include_once 'edit.php';
+                    ?>
+                    <table class="table table-bordered table-condensed table-hover table-responsive">
+                        <thead>
+                                                           
+                                <th style="width: 40px">ID</th>
+                                <th>Type</th>
+                                <th style="text-align: right">Amount</th>
+                                <th style="text-align: right">Total</th>
+                                <!--th>Date</th-->
+                                <th style="width:130px; text-align: center">Actions</th>
+                 
+                        </thead>
+                        <tbody class="bank_capital_table_data_all">
+                        </tbody>
+                    </table>
+
+                </div>
+                
+            </div>
+            
+            
+            
+            
+            
+            
+            
 
         </div>
 
@@ -225,9 +271,14 @@ include_once 'view.php';
     function cancelBtnview() {
         $("#viewdetail").hide(200)
     }
-    loadTableData();
-    function loadTableData() {
-        urls = "<?php echo site_url('dashboard/bank_capital/table') ?>";
+    
+    loadTableData_approved();
+    loadTableData_not_approved();
+    loadTableData_all();
+    loadTableData_my_capital();
+    
+    function loadTableData_approved() {
+        urls = "<?php echo site_url('dashboard/bank_capital/approvedtable') ?>",
         $.post(urls, function (data) {
             data = JSON.parse(data);
             if (data != "") {
@@ -236,10 +287,73 @@ include_once 'view.php';
                 data.forEach(function (value, index) {
 
                     html += '<tr>';
-                    html += "<td>" + i++ + "</td>";
+                    //html += "<td>" + i++ + "</td>";
+                    html += "<td>" + value.id + "</td>";
                     html += "<td>" + value.t_type + "</td>";
-                    html += "<td>" + value.amount + "</td>";
-                    html += "<td>" + value.entry_date + "</td>";
+                    html += "<td style='text-align: right'>" + value.amount + "</td>";
+                    html += "<td style='text-align: right'>" + value.total + "</td>";
+                   // html += "<td>" + value.entry_date + "</td>";
+                    html += '<td>'
+                    html += '<a href="javascript:void()" class="btn btn-success" title="Details" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_view" onClick= "detail_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/detail.png"></a>';
+                    html += '</td>'
+                    html += '</tr>';
+                });
+                html += '</table>';
+                $(".bank_capital_approved_table").html(html);
+            } // If Condtion END
+
+        });
+    }
+    
+    
+    
+function loadTableData_not_approved() {
+        urls = "<?php echo site_url('dashboard/bank_capital/notapprovedtable') ?>",
+        $.post(urls, function (data) {
+            data = JSON.parse(data);
+            if (data != "") {
+                var html = '';
+                var i = 1;
+                data.forEach(function (value, index) {
+
+                    html += '<tr>';
+                    //html += "<td>" + i++ + "</td>";
+                    html += "<td>" + value.id + "</td>";
+                    html += "<td>" + value.t_type + "</td>";
+                    html += "<td style='text-align: right'>" + value.amount + "</td>";
+                    html += "<td style='text-align: right'>" + value.total + "</td>";
+                   // html += "<td>" + value.entry_date + "</td>";
+                    html += '<td>'
+                    html += '<a href="javascript:void()" class="btn btn-success" title="Details" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_view" onClick= "detail_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/detail.png"></a>';
+                    html += '</td>'
+                    html += '</tr>';
+                });
+                html += '</table>';
+                $(".bank_capital_notapproved_table").html(html);
+            } // If Condtion END
+
+        });
+    }    
+    
+    
+    
+  
+function loadTableData_all() {
+        urls = "<?php echo site_url('dashboard/bank_capital/tabledataall') ?>",
+        $.post(urls, function (data) {
+            data = JSON.parse(data);
+            if (data != "") {
+                var html = '';
+                var i = 1;
+                data.forEach(function (value, index) {
+
+                    html += '<tr>';
+                    //html += "<td>" + i++ + "</td>";
+                    html += "<td>" + value.id + "</td>";
+                    html += "<td>" + value.t_type + "</td>";
+                    html += "<td style='text-align: right'>" + value.amount + "</td>";
+                    html += "<td style='text-align: right'>" + value.total + "</td>";
+                   // html += "<td>" + value.entry_date + "</td>";
                     html += '<td>'
                     html += '<a href="javascript:void()" class="btn btn-success" title="Details" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_view" onClick= "detail_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/detail.png"></a>';
                     html += '<a href="javascript:void()" class="btn btn-info" title="Edit" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_edit" onClick= "edit_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/edit.png"></a>';
@@ -248,14 +362,62 @@ include_once 'view.php';
                     html += '</tr>';
                 });
                 html += '</table>';
-                $("#bank_capital_table").html(html);
+                $(".bank_capital_table_data_all").html(html);
+            } // If Condtion END
+
+        });
+    }     
+    
+    
+    
+
+    function loadTableData_my_capital() {
+        urls = "<?php echo site_url('dashboard/bank_capital/table') ?>/" + status,
+        $.post(urls, function (data) {
+            data = JSON.parse(data);
+            if (data != "") {
+                var html = '';
+                var i = 1;
+                data.forEach(function (value, index) {
+
+                    html += '<tr>';
+                    //html += "<td>" + i++ + "</td>";
+                    html += "<td>" + value.id + "</td>";
+                    html += "<td>" + value.t_type + "</td>";
+                    html += "<td style='text-align: right'>" + value.amount + "</td>";
+                    html += "<td style='text-align: right'>" + value.total + "</td>";
+                   // html += "<td>" + value.entry_date + "</td>";
+                    html += '<td>'
+                    html += '<a href="javascript:void()" class="btn btn-success" title="Details" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_view" onClick= "detail_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/detail.png"></a>';
+                    html += '<a href="javascript:void()" class="btn btn-info" title="Edit" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_edit" onClick= "edit_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/edit.png"></a>';
+                    html += '<a href="javascript:void()" class="btn btn-danger" title="delete" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_delete" onClick= "delete_capital(' + value.id + ')"><img style="width:25px" src="<?php echo site_url(); ?>assets/uploads/icons/Trash.png"></a>';
+                    html += '</td>'
+                    html += '</tr>';
+                });
+                html += '</table>';
+                $(".bank_capital_table_class").html(html);
             } // If Condtion END
 
         });
     }
+    
+        
+    
+    
+    
+    
     function delete_capital(id) {
         $("#deleteModalId").val(id);
         $("#deleteModalSource").val("dashboard/bank_capital/remove");
     }
 
+$("#capital_not_approved_tab_nav").click(function(e){
+    e.preventDefault();
+    loadTableData("not-approved")
+})
+
+$("#capital_approved_tab_nav").click(function(e){
+    e.preventDefault();
+    loadTableData("approved")
+})
 </script>

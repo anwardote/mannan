@@ -20,7 +20,7 @@ require_once 'footsrc.php';
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
                             <h5 style="font-size: 18px; color:gray; margin: 0"> <i class="icon-tasks icon-large"></i> Bank Capital</h5>
-                             </a>
+                        </a>
 
                         <ul class="collapse list-group" id="component-nav">
 
@@ -35,18 +35,18 @@ require_once 'footsrc.php';
                         </a>
                         <ul class="collapse " id="student-nav">
 
-<?php
-            require_once 'user_view/index.php';
-?>
+                            <?php
+                            require_once 'user_view/index.php';
+                            ?>
                         </ul>
                     </li>
                 </ul>
             </div>
 
 
-<?php
-$this->load->view('foot');
-?>
+            <?php
+            $this->load->view('foot');
+            ?>
 
 
 
